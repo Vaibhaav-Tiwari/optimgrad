@@ -3,7 +3,7 @@ import numpy as np
 from typing import List, Tuple, Callable, Union, Optional
 from functools import partial
 
-# Core autograd engine implementing reverse mode automatic differentiation
+#core autograd engine implementing reverse mode automatic differentiation
 class Tensor:
     def __init__(self, data, requires_grad=False):
         if isinstance(data, Tensor):
@@ -11,7 +11,7 @@ class Tensor:
         else:
             self._data = np.array(data, dtype=np.float32)
         
-        self.grad = np.zeros_like(self._data)  # Always initialize grad to zeros
+        self.grad = np.zeros_like(self._data)  # initialize grad to zeros, or in the next iteratoin they would use the increased grad, one of the major mistakes pointed out by karpathy
         self.requires_grad = requires_grad
         self._backward = lambda: None
         self.children = set()
@@ -58,14 +58,14 @@ class Tensor:
             return
             
         if grad is None:
-            if self.data.size == 1:  # scalar output (size of 1)
+            if self.data.size == 1:  # scalar output 
                 grad = np.ones_like(self.data)
             else:
                 raise RuntimeError("grad must be specified for non-scalar outputs")
         
         self.grad = grad
         
-        # Build topological order of all nodes in the graph
+        #topological order of all nodes in the graph
         topo = []
         visited = set()
         
@@ -78,7 +78,7 @@ class Tensor:
         
         build_topo(self)
         
-        # Go one variable at a time and apply the chain rule to get its gradient
+        #one variable at a time and applying the chain rule to get its gradient
         for node in reversed(topo):
             node._backward()
 
@@ -88,10 +88,10 @@ class Tensor:
         
         def _backward():
             if self.requires_grad:
-                # Handle broadcasting in backward pass
+                # broadcasting in backward pass
                 grad = out.grad
                 if self.data.shape != grad.shape:
-                    # Sum gradients along broadcasted dimensions
+                    # sum gradients along broadcasted dimensions
                     for _ in range(len(grad.shape) - len(self.data.shape)):
                         grad = grad.sum(axis=0)
                     for i, dim in enumerate(self.data.shape):
@@ -99,7 +99,7 @@ class Tensor:
                             grad = grad.sum(axis=i, keepdims=True)
                 self.grad += grad
             if other.requires_grad:
-                # Handle broadcasting in backward pass
+                # handling broadcasting in backward pass
                 grad = out.grad
                 if other.data.shape != grad.shape:
                     # Sum gradients along broadcasted dimensions
@@ -153,7 +153,7 @@ class Tensor:
             self._in_graph = True
             other._in_graph = True
         return out
-
+# needed to included these cases as the engine don't know how to engage with numbers of different orders
     def __neg__(self):
         return self * -1
 

@@ -87,7 +87,7 @@ class Adam(Optimizer):
                 # Update parameters (without in-place operation)
                 p._data = p.data - self.lr * m_hat / (np.sqrt(v_hat) + self.eps)
 
-# DataLoader for mini-batching
+# handles mini batch creation for training
 class DataLoader:
     def __init__(self, X: np.ndarray, y: Optional[np.ndarray] = None,
                  batch_size: int = 32, shuffle: bool = True):
@@ -110,7 +110,7 @@ class DataLoader:
                 y_batch = None
             yield X_batch, y_batch
 
-class LRScheduler:
+class LRScheduler: # adjusts learning rate during training
     def __init__(self, optimizer: 'Optimizer', mode: str = 'step',
                  gamma: float = 0.1, step_size: int = 10,
                  min_lr: float = 1e-6):

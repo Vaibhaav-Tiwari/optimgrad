@@ -2,13 +2,13 @@ import numpy as np
 from typing import Tuple, Optional
 from engine import Tensor
 
-def xavier_init(shape: Tuple[int, ...]) -> np.ndarray:
+def xavier_init(shape: Tuple[int, ...]) -> np.ndarray: # for tanh and sigmoid functions 
     """Xavier/Glorot initialization"""
     n_in, n_out = shape[0], shape[-1]
     limit = np.sqrt(6 / (n_in + n_out))
     return np.random.uniform(-limit, limit, shape)
 
-def he_init(shape: Tuple[int, ...]) -> np.ndarray:
+def he_init(shape: Tuple[int, ...]) -> np.ndarray: # for relu functions 
     """He/Kaiming initialization"""
     n_in = shape[0]
     std = np.sqrt(2 / n_in)

@@ -8,7 +8,7 @@
 
 </div>
 
-OptimGrad is a lightweight, educational automatic differentiation engine built in pure Python with NumPy. It provides a PyTorch-like API for building and training neural networks, with a focus on clarity and learning. The engine implements reverse-mode automatic differentiation (backpropagation) and includes various utilities for deep learning.
+optimgrad is a lightweight, educational automatic differentiation engine built in pure Python with NumPy. It provides a PyTorch-like API for building and training neural networks, with a focus on mathematical correctness. The engine implement (backpropagation) and includes various utilities for deep learning.
 
 ## Features
 
@@ -32,6 +32,7 @@ git clone https://github.com/yourusername/optimgrad.git
 cd optimgrad
 pip install -r requirements.txt
 ```
+**not many dependencies tbh
 
 ## Quick Start
 
@@ -121,7 +122,7 @@ L = -\frac{1}{n}\sum_{i=1}^n [y_i \log(\hat{y}_i) + (1-y_i)\log(1-\hat{y}_i)]
 ### 4. Optimizers
 
 #### SGD (Stochastic Gradient Descent)
-```python
+```math
 w = w - lr * w.grad
 ```
 
@@ -161,31 +162,28 @@ lower, upper = estimate_bounds(f, x, eps=1e-4)
 The project includes comprehensive tests for all components:
 ```bash
 python test.py
+python test_scientific.py
 ```
 
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgments
 
-- Inspired by PyTorch's autograd system
+- Inspired by Karpathy's micrograd and PyTorch's autograd system
 - Built with educational purposes in mind
-- Special thanks to all contributors
 
 ## Citation
 
-If you use OptimGrad in your research, please cite:
+If you use optimgrad in your research, please cite:
 
 ```bibtex
 @software{optimgrad2025,
   author = {Your Name},
   title = {optimgrad: A lightweight and mathematical autograd engine},
-  year = {2024},
+  year = {202x},
   publisher = {GitHub},
   url = {https://github.com/yourusername/optimgrad}
 }
