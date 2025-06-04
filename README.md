@@ -1,3 +1,5 @@
+![OptimGrad Logo](logo.jpg)
+
 # optimgrad: A lightweight and mathematical autograd engine
 
 <div align="center">
