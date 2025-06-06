@@ -12,6 +12,8 @@
 
 optimgrad is a lightweight, educational automatic differentiation engine built in pure Python with NumPy. It provides a PyTorch-like API for building and training neural networks, with a focus on mathematical correctness. The engine implement (backpropagation) and includes various utilities for deep learning.
 
+[Slide Link](https://excalidraw.com/#json=d8Wn7DfScibIc5yyri9rS,LTZNMM8GqWymczq29N0yAg)
+
 ## Features
 
 - **Automatic Differentiation**: Reverse-mode autodiff with dynamic computational graphs
